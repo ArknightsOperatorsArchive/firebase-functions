@@ -37,7 +37,7 @@ export const getUser = functions.https.onCall((_, context) => {
     );
   }
   const uid = context.auth.uid;
-  admin
+  return admin
     .firestore()
     .collection("users")
     .doc(uid)
@@ -49,7 +49,9 @@ export const getUser = functions.https.onCall((_, context) => {
           "User does not exist"
         );
       }
-      return doc.data();
+      const data = doc.data() as User;
+      console.log(`Got user ${uid}: ${JSON.stringify(data)}`);
+      return data;
     })
     .catch((err) => {
       console.log(err);
