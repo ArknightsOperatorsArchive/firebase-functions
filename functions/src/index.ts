@@ -49,7 +49,7 @@ export const getUser = functions.https.onCall((_, context) => {
           "User does not exist"
         );
       }
-      return doc.data;
+      return doc.data();
     })
     .catch((err) => {
       console.log(err);
