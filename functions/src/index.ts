@@ -4,6 +4,7 @@ import admin = require("firebase-admin");
 import { getUserInfo } from "./users/getUser";
 import { addUserToDbUponCreation } from "./users/addUserToDb";
 import { getAkOperators } from "./operators/getOperators";
+import { addAkOperator } from "./operators/addOperator";
 
 admin.initializeApp(functions.config().firebase);
 
@@ -12,3 +13,5 @@ export const addUserInDatabaseUponCreation = addUserToDbUponCreation;
 export const getUser = getUserInfo;
 
 export const getOperators = getAkOperators;
+
+export const addOperator = addAkOperator;
