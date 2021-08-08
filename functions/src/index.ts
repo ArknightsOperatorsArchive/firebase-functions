@@ -1,60 +1,14 @@
 import * as functions from "firebase-functions";
 import admin = require("firebase-admin");
-import User from "../types/User";
+
+import { getUserInfo } from "./users/getUser";
+import { addUserToDbUponCreation } from "./users/addUserToDb";
+import { getAkOperators } from "./operators/getOperators";
 
 admin.initializeApp(functions.config().firebase);
 
-export const addUserInDatabaseUponCreation = functions.auth
-  .user()
-  .onCreate((user) => {
-    const userDoc: User = {
-      uid: user.uid,
-      displayName: user.displayName || "",
-      email: user.email || "",
-      isAdmin: false,
-    };
+export const addUserInDatabaseUponCreation = addUserToDbUponCreation;
 
-    admin
-      .firestore()
-      .collection("users")
-      .doc(user.uid)
-      .set(userDoc)
-      .then((writeResult) => {
-        console.log("User Created result:", writeResult);
-        return;
-      })
-      .catch((err) => {
-        console.log(err);
-        return;
-      });
-  });
+export const getUser = getUserInfo;
 
-export const getUser = functions.https.onCall((_, context) => {
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      "unauthenticated",
-      "User not authenticated"
-    );
-  }
-  const uid = context.auth.uid;
-  return admin
-    .firestore()
-    .collection("users")
-    .doc(uid)
-    .get()
-    .then((doc) => {
-      if (!doc.exists) {
-        throw new functions.https.HttpsError(
-          "not-found",
-          "User does not exist"
-        );
-      }
-      const data = doc.data() as User;
-      console.log(`Got user ${uid}: ${JSON.stringify(data)}`);
-      return data;
-    })
-    .catch((err) => {
-      console.log(err);
-      throw new functions.https.HttpsError("unknown", err);
-    });
-});
+export const getOperators = getAkOperators;
