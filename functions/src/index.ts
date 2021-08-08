@@ -2,13 +2,7 @@ import * as functions from "firebase-functions";
 import admin = require("firebase-admin");
 import User from "../types/User";
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+admin.initializeApp(functions.config().firebase);
 
 export const addUserInDatabaseUponCreation = functions.auth
   .user()
@@ -34,3 +28,31 @@ export const addUserInDatabaseUponCreation = functions.auth
         return;
       });
   });
+
+export const getUser = functions.https.onCall((_, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "User not authenticated"
+    );
+  }
+  const uid = context.auth.uid;
+  admin
+    .firestore()
+    .collection("users")
+    .doc(uid)
+    .get()
+    .then((doc) => {
+      if (!doc.exists) {
+        throw new functions.https.HttpsError(
+          "not-found",
+          "User does not exist"
+        );
+      }
+      return doc.data;
+    })
+    .catch((err) => {
+      console.log(err);
+      throw new functions.https.HttpsError("unknown", err);
+    });
+});
