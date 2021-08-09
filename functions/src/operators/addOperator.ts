@@ -32,6 +32,18 @@ export const addAkOperator = functions.https.onCall(
         "User is not authorised"
       );
     }
+
+    const query = await admin
+      .firestore()
+      .collection("operators")
+      .where("name", "==", data.name)
+      .get();
+    if (query.size > 0) {
+      throw new functions.https.HttpsError(
+        "already-exists",
+        "Operator already exists"
+      );
+    }
     return admin.firestore().collection("operators").doc().set({
       name: data.name,
       class: data.class,
