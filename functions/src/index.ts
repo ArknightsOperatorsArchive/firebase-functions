@@ -3,9 +3,12 @@ import admin = require("firebase-admin");
 
 import { getUserInfo } from "./users/getUser";
 import { addUserToDbUponCreation } from "./users/addUserToDb";
+
 import { getAkOperators } from "./operators/getOperators";
 import { addAkOperator } from "./operators/addOperator";
 import { deleteAkOperator } from "./operators/deleteOperators";
+
+import { getProjectArtists } from "./artist/getArtists";
 
 admin.initializeApp(functions.config().firebase);
 
@@ -18,3 +21,5 @@ export const getOperators = getAkOperators;
 export const addOperator = addAkOperator;
 
 export const deleteOperator = deleteAkOperator;
+
+export const getArtists = getProjectArtists;
