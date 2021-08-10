@@ -44,6 +44,6 @@ export const addProjectArtists = functions.https.onCall(
         "Artist already exists"
       );
     }
-    return admin.firestore().collection("operators").doc().set(data);
+    return admin.firestore().collection("artists").doc().set(data);
   }
 );
