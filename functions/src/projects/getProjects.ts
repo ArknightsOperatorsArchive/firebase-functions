@@ -13,8 +13,8 @@ export const getAkProjects = functions.https.onCall(() => {
         const docData = doc.data();
         data.push({
           uid: doc.id,
-          name: docData.name,
-          class: docData.class,
+          projectTitle: docData.projectTitle,
+          released: docData.released,
         });
       });
       console.log(data);
