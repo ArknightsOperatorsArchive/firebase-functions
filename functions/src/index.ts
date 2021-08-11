@@ -11,6 +11,7 @@ import { deleteAkOperator } from "./operators/deleteOperators";
 import { getProjectArtists } from "./artist/getArtists";
 import { addProjectArtists } from "./artist/addArtists";
 import { deleteProjectArtist } from "./artist/deleteArtist";
+import { updateProjectArtist } from "./artist/updateArtist";
 
 admin.initializeApp(functions.config().firebase);
 
@@ -29,3 +30,5 @@ export const getArtists = getProjectArtists;
 export const addArtists = addProjectArtists;
 
 export const deleteArtists = deleteProjectArtist;
+
+export const updateArtist = updateProjectArtist;
