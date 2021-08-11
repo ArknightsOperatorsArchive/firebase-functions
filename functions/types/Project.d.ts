@@ -1,5 +1,5 @@
 export default interface Project {
-  uuid: string;
+  uid: string;
   projectTitle: string;
   released: boolean;
 }
