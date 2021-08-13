@@ -13,6 +13,7 @@ import { addProjectArtists } from "./artist/addArtists";
 import { deleteProjectArtist } from "./artist/deleteArtist";
 import { updateProjectArtist } from "./artist/updateArtist";
 import { getAkProjects } from "./projects/getProjects";
+import { addArtworkToProject } from "./artwork/addArtwork";
 
 admin.initializeApp(functions.config().firebase);
 
@@ -35,3 +36,5 @@ export const deleteArtists = deleteProjectArtist;
 export const updateArtist = updateProjectArtist;
 
 export const getProjects = getAkProjects;
+
+export const addArtworks = addArtworkToProject;

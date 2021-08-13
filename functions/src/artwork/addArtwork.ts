@@ -1,7 +1,6 @@
 import * as functions from "firebase-functions";
 import admin = require("firebase-admin");
 
-import Project from "../../types/Project";
 import User from "../../types/User";
 
 export const addArtworkToProject = functions.https.onCall(
