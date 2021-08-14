@@ -96,5 +96,5 @@ export const getArtworkById = functions.https.onCall(async (data, context) => {
       "Artwork cannot be found."
     );
   }
-  return (await docRef.get()).data;
+  return doc.data();
 });
