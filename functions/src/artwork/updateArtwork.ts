@@ -17,6 +17,12 @@ export const updateArtworkDetails = functions.https.onCall(
         "Please provide a projectId"
       );
     }
+    if (!data.artworkId) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "Please provide a artworkId"
+      );
+    }
     const uid = context.auth.uid;
 
     const userDetails = await admin
@@ -44,7 +50,7 @@ export const updateArtworkDetails = functions.https.onCall(
       .collection("projects")
       .doc(data.projectId)
       .collection("artworks")
-      .doc(uid)
+      .doc(data.artworkId)
       .update({ ...data.art });
   }
 );
