@@ -19,6 +19,8 @@ import {
   updateArtworkDetailsOnFileCreation,
   updateArtworkDetailsOnFileDeletion,
 } from "./artwork/onStorageUpload";
+import { deleteArtworkFromProject } from "./artwork/deleteArtwork";
+import { updateArtworkDetails } from "./artwork/updateArtwork";
 
 admin.initializeApp(functions.config().firebase);
 
@@ -47,6 +49,10 @@ export const addArtworks = addArtworkToProject;
 export const getAllArtworks = getArtworksForProject;
 
 export const getArtwork = getArtworkById;
+
+export const deleteArtwork = deleteArtworkFromProject;
+
+export const updateArtwork = updateArtworkDetails;
 
 export const updateArtworkOnFileCreation = updateArtworkDetailsOnFileCreation;
 
