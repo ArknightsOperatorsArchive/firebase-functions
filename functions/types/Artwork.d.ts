@@ -6,4 +6,5 @@ export default interface Artwork {
   artist: Artist;
   operator: AKOperator;
   status: "Not Assigned" | "Assigned" | "Work in Progress" | "Finished";
+  fileExists?: boolean;
 }

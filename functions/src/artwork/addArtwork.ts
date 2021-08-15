@@ -45,6 +45,6 @@ export const addArtworkToProject = functions.https.onCall(
       .collection("projects")
       .doc(data.projectId)
       .collection("artworks")
-      .add(data.art);
+      .add({ ...data.art, fileExists: false });
   }
 );

@@ -55,6 +55,7 @@ export const getArtworksForProject = functions.https.onCall(
             artist: docData.artist,
             operator: docData.operator,
             status: docData.status,
+            fileExists: docData.fileExists || false,
           });
         });
         console.log(data);

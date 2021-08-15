@@ -15,6 +15,10 @@ import { updateProjectArtist } from "./artist/updateArtist";
 import { getAkProjects } from "./projects/getProjects";
 import { addArtworkToProject } from "./artwork/addArtwork";
 import { getArtworkById, getArtworksForProject } from "./artwork/getArtwork";
+import {
+  updateArtworkDetailsOnFileCreation,
+  updateArtworkDetailsOnFileDeletion,
+} from "./artwork/onStorageUpload";
 
 admin.initializeApp(functions.config().firebase);
 
@@ -43,3 +47,7 @@ export const addArtworks = addArtworkToProject;
 export const getAllArtworks = getArtworksForProject;
 
 export const getArtwork = getArtworkById;
+
+export const updateArtworkOnFileCreation = updateArtworkDetailsOnFileCreation;
+
+export const updateArtworkOnFileDeletion = updateArtworkDetailsOnFileDeletion;
