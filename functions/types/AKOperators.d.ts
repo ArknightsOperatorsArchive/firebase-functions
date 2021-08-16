@@ -12,4 +12,5 @@ export type OperatorClass =
   | "Sniper"
   | "Specialist"
   | "Supporter"
-  | "Vanguard";
+  | "Vanguard"
+  | "Other";
