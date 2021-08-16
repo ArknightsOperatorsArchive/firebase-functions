@@ -12,12 +12,14 @@ export const useWildcard = functions.firestore
 
     const newData = change.after.data();
 
+    console.log(artistId, JSON.stringify(newData));
     await admin
       .firestore()
-      .collection("projects/{projectId}/artworks")
+      .collectionGroup("artworks")
       .where("artist.uid", "==", artistId)
       .get()
       .then((querySnapshot) => {
+        console.log(JSON.stringify(querySnapshot));
         querySnapshot.forEach(async (doc) => {
           await doc.ref.update({ ...newData });
         });
