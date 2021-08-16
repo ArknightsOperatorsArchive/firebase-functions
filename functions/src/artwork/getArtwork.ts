@@ -53,6 +53,7 @@ export const getArtworksForProject = functions.https.onCall(
           data.push({
             uid: doc.id,
             artist: docData.artist,
+            artists: docData.artists || [],
             operator: docData.operator,
             status: docData.status,
             fileExists: docData.fileExists || false,
@@ -68,7 +69,7 @@ export const getArtworksForProject = functions.https.onCall(
   }
 );
 
-export const getArtworkById = functions.https.onCall(async (data, context) => {
+export const getArtworkById = functions.https.onCall(async (data) => {
   if (!data.projectId) {
     throw new functions.https.HttpsError(
       "invalid-argument",
