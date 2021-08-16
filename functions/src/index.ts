@@ -21,6 +21,7 @@ import {
 } from "./artwork/onStorageUpload";
 import { deleteArtworkFromProject } from "./artwork/deleteArtwork";
 import { updateArtworkDetails } from "./artwork/updateArtwork";
+import { useWildcard } from "./artist/onUpdateArtist";
 
 admin.initializeApp(functions.config().firebase);
 
@@ -57,3 +58,5 @@ export const updateArtwork = updateArtworkDetails;
 export const updateArtworkOnFileCreation = updateArtworkDetailsOnFileCreation;
 
 export const updateArtworkOnFileDeletion = updateArtworkDetailsOnFileDeletion;
+
+export const updateArtworkArtistDetailsOnArtistChange = useWildcard;
