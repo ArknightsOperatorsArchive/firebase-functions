@@ -4,7 +4,10 @@ import admin = require("firebase-admin");
 import { getUserInfo } from "./users/getUser";
 import { addUserToDbUponCreation } from "./users/addUserToDb";
 
-import { getAkOperators } from "./operators/getOperators";
+import {
+  getAkOperators,
+  getAkOperatorsByClass,
+} from "./operators/getOperators";
 import { addAkOperator } from "./operators/addOperator";
 import { deleteAkOperator } from "./operators/deleteOperators";
 
@@ -14,7 +17,11 @@ import { deleteProjectArtist } from "./artist/deleteArtist";
 import { updateProjectArtist } from "./artist/updateArtist";
 import { getAkProjects } from "./projects/getProjects";
 import { addArtworkToProject } from "./artwork/addArtwork";
-import { getArtworkById, getArtworksForProject } from "./artwork/getArtwork";
+import {
+  getArtworkById,
+  getArtworksByOperatorClass,
+  getArtworksForProject,
+} from "./artwork/getArtwork";
 import {
   updateArtworkDetailsOnFileCreation,
   updateArtworkDetailsOnFileDeletion,
@@ -31,6 +38,8 @@ export const getUser = getUserInfo;
 
 export const getOperators = getAkOperators;
 
+export const getOperatorsByClass = getAkOperatorsByClass;
+
 export const addOperator = addAkOperator;
 
 export const deleteOperator = deleteAkOperator;
@@ -46,6 +55,8 @@ export const updateArtist = updateProjectArtist;
 export const getProjects = getAkProjects;
 
 export const addArtworks = addArtworkToProject;
+
+export const getArtworksByClass = getArtworksByOperatorClass;
 
 export const getAllArtworks = getArtworksForProject;
 
