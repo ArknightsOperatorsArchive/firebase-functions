@@ -47,6 +47,7 @@ export const addAkOperator = functions.https.onCall(
     return admin.firestore().collection("operators").doc().set({
       name: data.name,
       class: data.class,
+      rarity: data.rarity,
     });
   }
 );

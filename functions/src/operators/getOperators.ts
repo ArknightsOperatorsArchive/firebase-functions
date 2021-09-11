@@ -15,6 +15,7 @@ export const getAkOperators = functions.https.onCall(() => {
           uid: doc.id,
           name: docData.name,
           class: docData.class,
+          rarity: docData.rarity,
         });
       });
       console.log(data);
@@ -40,6 +41,7 @@ export const getAkOperatorsByClass = functions.https.onCall((data, _) => {
           uid: doc.id,
           name: docData.name,
           class: docData.class,
+          rarity: docData.rarity,
         });
       });
       console.log(data);
