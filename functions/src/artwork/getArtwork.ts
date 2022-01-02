@@ -5,12 +5,6 @@ import User from "../../types/User";
 
 export const getArtworksForProject = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "User not authenticated"
-      );
-    }
 
     if (!data.projectId) {
       throw new functions.https.HttpsError(
@@ -18,28 +12,6 @@ export const getArtworksForProject = functions.https.onCall(
         "Please provide a projectId"
       );
     }
-    const uid = context.auth.uid;
-
-    const userDetails = await admin
-      .firestore()
-      .collection("users")
-      .doc(uid)
-      .get();
-    const userData = userDetails.data() as User;
-    if (!userData) {
-      throw new functions.https.HttpsError(
-        "permission-denied",
-        "User not authenticated"
-      );
-    }
-
-    if (!userData.isAdmin) {
-      throw new functions.https.HttpsError(
-        "permission-denied",
-        "User is not authorised"
-      );
-    }
-
     return admin
       .firestore()
       .collection("projects")
