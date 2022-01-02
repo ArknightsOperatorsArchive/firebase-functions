@@ -1,11 +1,9 @@
 import * as functions from "firebase-functions";
 import admin = require("firebase-admin");
 import Artwork from "../../types/Artwork";
-import User from "../../types/User";
 
 export const getArtworksForProject = functions.https.onCall(
   async (data, context) => {
-
     if (!data.projectId) {
       throw new functions.https.HttpsError(
         "invalid-argument",
